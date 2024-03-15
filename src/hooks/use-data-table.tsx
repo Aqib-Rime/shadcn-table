@@ -25,27 +25,27 @@ import { useCreateQueryString } from "@/hooks/use-query-string-create"
 
 interface UseDataTableProps<TData, TValue> {
   /**
-   * The data for the table
+   * The data for the table.
    * @default []
    * @type TData[]
    */
   data: TData[]
 
   /**
-   * The columns of the table
+   * The columns of the table.
    * @default []
    * @type ColumnDef<TData, TValue>[]
    */
   columns: ColumnDef<TData, TValue>[]
 
   /**
-   * The number of pages in the table
+   * The number of pages in the table.
    * @type number
    */
   pageCount: number
 
   /**
-   * The searchable columns of the table
+   * The searchable columns of the table.
    * @default []
    * @type {id: keyof TData, title: string}[]
    * @example searchableColumns={[{ id: "title", title: "titles" }]}

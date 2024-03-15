@@ -32,14 +32,14 @@ interface DataTableProps<TData, TValue> {
   table: TanstackTable<TData>
 
   /**
-   * The columns of the table
+   * The columns of the table.
    * @default []
    * @type ColumnDef<TData, TValue>[]
    */
   columns: ColumnDef<TData, TValue>[]
 
   /**
-   * The searchable columns of the table
+   * The searchable columns of the table.
    * @default []
    * @type {id: keyof TData, title: string}[]
    * @example searchableColumns={[{ id: "title", title: "titles" }]}
@@ -55,7 +55,7 @@ interface DataTableProps<TData, TValue> {
   filterableColumns?: DataTableFilterableColumn<TData>[]
 
   /**
-   * Show notion like filters when enabled
+   * Enables notion like filters when enabled.
    * @default false
    * @type boolean
    */
@@ -71,7 +71,7 @@ interface DataTableProps<TData, TValue> {
   floatingBarContent?: React.ReactNode | null
 
   /**
-   * The link to create a new row, will be rendered as a button
+   * The link to create a new row, will be rendered as a button.
    * @default undefined
    * @type string
    * @example newRowLink="/tasks/new"
@@ -79,7 +79,7 @@ interface DataTableProps<TData, TValue> {
   newRowLink?: string
 
   /**
-   * The action to delete rows, will be rendered as a button
+   * The action to delete rows, will be rendered as a button.
    * @default undefined
    * @type React.MouseEventHandler<HTMLButtonElement> | undefined
    * @example deleteRowsAction={(event) => deleteSelectedRows(dataTable, event)}

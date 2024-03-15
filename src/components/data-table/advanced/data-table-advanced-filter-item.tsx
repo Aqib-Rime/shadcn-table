@@ -124,8 +124,8 @@ export function DataTableAdvancedFilterItem<TData>({
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-60 space-y-1 text-xs" align="start">
-        <div className="flex items-center space-x-1">
+      <PopoverContent className="w-60 space-y-1.5 p-2 text-xs" align="start">
+        <div className="flex items-center space-x-1 pl-1 pr-0.5">
           <div className="flex flex-1 items-center space-x-1">
             <div className="capitalize">{selectedOption.label}</div>
             <Select onValueChange={(value) => setFilterVariety(value)}>
