@@ -8,7 +8,6 @@ import { TasksTable } from "./_components/tasks-table"
 import { getTasks } from "./_lib/queries"
 import { searchParamsSchema } from "./_lib/validations"
 
-
 export interface IndexPageProps {
   searchParams: SearchParams
 }

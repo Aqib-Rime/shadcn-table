@@ -1,9 +1,5 @@
 import { seedTasks } from "@/app/_lib/actions"
 
-
-
-
-
 async function runSeed() {
   console.log("⏳ Running seed...")
 

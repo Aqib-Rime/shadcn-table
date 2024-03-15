@@ -11,13 +11,9 @@ import type { Table } from "@tanstack/react-table"
 
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import FilterToolbar from "@/components/data-table/data-filter-toolbar"
 import { DataTableFacetedFilter } from "@/components/data-table/data-table-faceted-filter"
 import { DataTableViewOptions } from "@/components/data-table/data-table-view-options"
-
-
-
-
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -27,42 +23,20 @@ interface DataTableToolbarProps<TData> {
   deleteRowsAction?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-export function DataTableToolbar<TData>(
-  {
-    table,
-    filterableColumns = [],
-    searchableColumns = [],
-    newRowLink,
-    deleteRowsAction,
-  }: DataTableToolbarProps<TData>
-) {
+export function DataTableToolbar<TData>({
+  table,
+  filterableColumns = [],
+  searchableColumns = [],
+  newRowLink,
+  deleteRowsAction,
+}: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0
   const [isDeletePending, startDeleteTransition] = React.useTransition()
 
   return (
     <div className="flex w-full items-center justify-between space-x-2 overflow-auto p-1">
       <div className="flex flex-1 items-center space-x-2">
-        {searchableColumns.length > 0 &&
-          searchableColumns.map(
-            (column) =>
-              table.getColumn(column.id ? String(column.id) : "") && (
-                <Input
-                  key={String(column.id)}
-                  placeholder={`Filter ${column.title}...`}
-                  value={
-                    (table
-                      .getColumn(String(column.id))
-                      ?.getFilterValue() as string) ?? ""
-                  }
-                  onChange={(event) =>
-                    table
-                      .getColumn(String(column.id))
-                      ?.setFilterValue(event.target.value)
-                  }
-                  className="h-8 w-[150px] lg:w-[250px]"
-                />
-              )
-          )}
+        <FilterToolbar table={table} searchableColumns={searchableColumns} />
         {filterableColumns.length > 0 &&
           filterableColumns.map(
             (column) =>

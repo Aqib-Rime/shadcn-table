@@ -8,10 +8,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-
-
-
-
 interface DataTableSkeletonProps {
   columnCount: number
   rowCount?: number
@@ -19,14 +15,12 @@ interface DataTableSkeletonProps {
   filterableColumnCount?: number
 }
 
-export function DataTableSkeleton(
-  {
-    columnCount,
-    rowCount = 10,
-    searchableColumnCount = 1,
-    filterableColumnCount = 1,
-  }: DataTableSkeletonProps
-) {
+export function DataTableSkeleton({
+  columnCount,
+  rowCount = 10,
+  searchableColumnCount = 1,
+  filterableColumnCount = 1,
+}: DataTableSkeletonProps) {
   return (
     <div className="w-full space-y-3 overflow-auto">
       <div className="flex w-full items-center justify-between space-x-2 overflow-auto p-1">

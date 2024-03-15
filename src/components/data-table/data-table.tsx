@@ -17,12 +17,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { searchParamsSchema } from "@/app/_lib/validations"
 
 import { DataTableAdvancedToolbar } from "./advanced/data-table-advanced-toolbar"
 import { DataTableFloatingBar } from "./data-table-floating-bar"
 import { DataTablePagination } from "./data-table-pagination"
 import { DataTableToolbar } from "./data-table-toolbar"
-
 
 interface DataTableProps<TData, TValue> {
   /**
@@ -87,18 +87,16 @@ interface DataTableProps<TData, TValue> {
   deleteRowsAction?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-export function DataTable<TData, TValue>(
-  {
-    table,
-    columns,
-    searchableColumns = [],
-    filterableColumns = [],
-    advancedFilter = false,
-    floatingBarContent,
-    newRowLink,
-    deleteRowsAction,
-  }: DataTableProps<TData, TValue>
-) {
+export function DataTable<TData, TValue>({
+  table,
+  columns,
+  searchableColumns = [],
+  filterableColumns = [],
+  advancedFilter = false,
+  floatingBarContent,
+  newRowLink,
+  deleteRowsAction,
+}: DataTableProps<TData, TValue>) {
   return (
     <div className="w-full space-y-2.5 overflow-auto">
       {advancedFilter ? (

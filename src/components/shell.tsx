@@ -3,10 +3,6 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
-
-
-
-
 const shellVariants = cva("grid items-center gap-8 pb-8 pt-6 md:py-8", {
   variants: {
     variant: {
@@ -27,9 +23,12 @@ interface ShellProps
   as?: React.ElementType
 }
 
-function Shell(
-  { className, as: Comp = "section", variant, ...props }: ShellProps
-) {
+function Shell({
+  className,
+  as: Comp = "section",
+  variant,
+  ...props
+}: ShellProps) {
   return (
     <Comp className={cn(shellVariants({ variant }), className)} {...props} />
   )

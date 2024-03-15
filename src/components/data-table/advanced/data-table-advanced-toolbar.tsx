@@ -10,13 +10,12 @@ import { CaretSortIcon, PlusIcon } from "@radix-ui/react-icons"
 import type { Table } from "@tanstack/react-table"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { DataTableAdvancedFilter } from "@/components/data-table/advanced/data-table-advanced-filter"
+import FilterToolbar from "@/components/data-table/data-filter-toolbar"
 import { DataTableViewOptions } from "@/components/data-table/data-table-view-options"
 
 import { DataTableAdvancedFilterItem } from "./data-table-advanced-filter-item"
 import { DataTableMultiFilter } from "./data-table-multi-filter"
-
 
 interface DataTableAdvancedToolbarProps<TData> {
   table: Table<TData>
@@ -24,13 +23,11 @@ interface DataTableAdvancedToolbarProps<TData> {
   filterableColumns?: DataTableFilterableColumn<TData>[]
 }
 
-export function DataTableAdvancedToolbar<TData>(
-  {
-    table,
-    filterableColumns = [],
-    searchableColumns = [],
-  }: DataTableAdvancedToolbarProps<TData>
-) {
+export function DataTableAdvancedToolbar<TData>({
+  table,
+  filterableColumns = [],
+  searchableColumns = [],
+}: DataTableAdvancedToolbarProps<TData>) {
   const [selectedOptions, setSelectedOptions] = React.useState<
     DataTableFilterOption<TData>[]
   >([])
@@ -63,27 +60,7 @@ export function DataTableAdvancedToolbar<TData>(
     <div className="w-full space-y-2.5 overflow-auto p-1">
       <div className="flex items-center justify-between space-x-2">
         <div className="flex flex-1 items-center space-x-2">
-          {searchableColumns.length > 0 &&
-            searchableColumns.map(
-              (column) =>
-                table.getColumn(column.id ? String(column.id) : "") && (
-                  <Input
-                    key={String(column.id)}
-                    placeholder={`Filter ${column.title}...`}
-                    value={
-                      (table
-                        .getColumn(String(column.id))
-                        ?.getFilterValue() as string) ?? ""
-                    }
-                    onChange={(event) =>
-                      table
-                        .getColumn(String(column.id))
-                        ?.setFilterValue(event.target.value)
-                    }
-                    className="h-8 w-[150px] lg:w-[250px]"
-                  />
-                )
-            )}
+          <FilterToolbar table={table} searchableColumns={searchableColumns} />
         </div>
         <div className="flex items-center space-x-2">
           {selectedOptions.length > 0 ? (

@@ -21,19 +21,17 @@ import {
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
 
-
-
-
-
 interface DataTableFacetedFilter<TData, TValue> {
   column?: Column<TData, TValue>
   title?: string
   options: Option[]
 }
 
-export function DataTableFacetedFilter<TData, TValue>(
-  { column, title, options }: DataTableFacetedFilter<TData, TValue>
-) {
+export function DataTableFacetedFilter<TData, TValue>({
+  column,
+  title,
+  options,
+}: DataTableFacetedFilter<TData, TValue>) {
   const selectedValues = new Set(column?.getFilterValue() as string[])
 
   return (

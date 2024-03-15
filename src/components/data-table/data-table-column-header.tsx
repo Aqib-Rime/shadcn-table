@@ -22,9 +22,11 @@ interface DataTableColumnHeaderProps<TData, TValue>
   title: string
 }
 
-export function DataTableColumnHeader<TData, TValue>(
-  { column, title, className }: DataTableColumnHeaderProps<TData, TValue>
-) {
+export function DataTableColumnHeader<TData, TValue>({
+  column,
+  title,
+  className,
+}: DataTableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>
   }
@@ -38,8 +40,8 @@ export function DataTableColumnHeader<TData, TValue>(
               column.getIsSorted() === "desc"
                 ? `Sorted descending. Click to sort ascending.`
                 : column.getIsSorted() === "asc"
-                ? `Sorted ascending. Click to sort descending.`
-                : `Not sorted. Click to sort ascending.`
+                  ? `Sorted ascending. Click to sort descending.`
+                  : `Not sorted. Click to sort ascending.`
             }
             variant="ghost"
             size="sm"

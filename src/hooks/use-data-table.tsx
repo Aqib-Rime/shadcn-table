@@ -68,16 +68,14 @@ const schema = z.object({
   sort: z.string().optional(),
 })
 
-export function useDataTable<TData, TValue>(
-  {
-    data,
-    columns,
-    pageCount,
-    getRowId,
-    searchableColumns = [],
-    filterableColumns = [],
-  }: UseDataTableProps<TData, TValue>
-) {
+export function useDataTable<TData, TValue>({
+  data,
+  columns,
+  pageCount,
+  getRowId,
+  searchableColumns = [],
+  filterableColumns = [],
+}: UseDataTableProps<TData, TValue>) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()

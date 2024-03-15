@@ -36,7 +36,6 @@ import { Separator } from "@/components/ui/separator"
 
 import { DataTableFacetedFilter } from "../data-table-faceted-filter"
 
-
 const operators = [
   {
     label: "And",
@@ -57,14 +56,12 @@ interface DataTableMultiFilterProps<TData> {
   >
 }
 
-export function DataTableMultiFilter<TData>(
-  {
-    table,
-    allOptions,
-    options,
-    setSelectedOptions,
-  }: DataTableMultiFilterProps<TData>
-) {
+export function DataTableMultiFilter<TData>({
+  table,
+  allOptions,
+  options,
+  setSelectedOptions,
+}: DataTableMultiFilterProps<TData>) {
   const [open, setOpen] = React.useState(true)
   const [operator, setOperator] = React.useState(operators[0])
 
@@ -124,18 +121,16 @@ interface MultiFilterRowProps<TData> extends DataTableMultiFilterProps<TData> {
   >
 }
 
-export function MultiFilterRow<TData>(
-  {
-    i,
-    table,
-    option,
-    allOptions,
-    options,
-    setSelectedOptions,
-    operator,
-    setOperator,
-  }: MultiFilterRowProps<TData>
-) {
+export function MultiFilterRow<TData>({
+  i,
+  table,
+  option,
+  allOptions,
+  options,
+  setSelectedOptions,
+  operator,
+  setOperator,
+}: MultiFilterRowProps<TData>) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()

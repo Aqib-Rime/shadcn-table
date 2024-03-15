@@ -18,7 +18,6 @@ import {
   searchableColumns,
 } from "./tasks-table-column-def"
 
-
 interface TasksTableProps {
   tasksPromise: ReturnType<typeof getTasks>
 }

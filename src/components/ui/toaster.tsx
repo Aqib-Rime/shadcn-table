@@ -3,10 +3,6 @@
 import { useTheme } from "next-themes"
 import { Toaster as RadToaster } from "sonner"
 
-
-
-
-
 type ToasterProps = React.ComponentProps<typeof RadToaster>
 
 function Toaster({ ...props }: ToasterProps) {

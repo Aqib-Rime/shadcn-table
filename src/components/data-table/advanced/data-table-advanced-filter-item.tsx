@@ -25,7 +25,6 @@ import {
 
 import { DataTableAdvancedFacetedFilter } from "./data-table-advanced-faceted-filter"
 
-
 interface DataTableAdvancedFilterItemProps<TData> {
   table: Table<TData>
   selectedOption: DataTableFilterOption<TData>
@@ -34,13 +33,11 @@ interface DataTableAdvancedFilterItemProps<TData> {
   >
 }
 
-export function DataTableAdvancedFilterItem<TData>(
-  {
-    table,
-    selectedOption,
-    setSelectedOptions,
-  }: DataTableAdvancedFilterItemProps<TData>
-) {
+export function DataTableAdvancedFilterItem<TData>({
+  table,
+  selectedOption,
+  setSelectedOptions,
+}: DataTableAdvancedFilterItemProps<TData>) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
