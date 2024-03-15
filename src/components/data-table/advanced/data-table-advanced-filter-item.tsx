@@ -6,6 +6,7 @@ import type { Table } from "@tanstack/react-table"
 
 import { cn } from "@/lib/utils"
 import { useDebounce } from "@/hooks/use-debounce"
+import { useCreateQueryString } from "@/hooks/use-query-string-create"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -24,6 +25,7 @@ import {
 
 import { DataTableAdvancedFacetedFilter } from "./data-table-advanced-faceted-filter"
 
+
 interface DataTableAdvancedFilterItemProps<TData> {
   table: Table<TData>
   selectedOption: DataTableFilterOption<TData>
@@ -32,11 +34,13 @@ interface DataTableAdvancedFilterItemProps<TData> {
   >
 }
 
-export function DataTableAdvancedFilterItem<TData>({
-  table,
-  selectedOption,
-  setSelectedOptions,
-}: DataTableAdvancedFilterItemProps<TData>) {
+export function DataTableAdvancedFilterItem<TData>(
+  {
+    table,
+    selectedOption,
+    setSelectedOptions,
+  }: DataTableAdvancedFilterItemProps<TData>
+) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -63,22 +67,7 @@ export function DataTableAdvancedFilterItem<TData>({
   const [filterVariety, setFilterVariety] = React.useState(filterVarieties[0])
 
   // Create query string
-  const createQueryString = React.useCallback(
-    (params: Record<string, string | number | null>) => {
-      const newSearchParams = new URLSearchParams(searchParams?.toString())
-
-      for (const [key, value] of Object.entries(params)) {
-        if (value === null) {
-          newSearchParams.delete(key)
-        } else {
-          newSearchParams.set(key, String(value))
-        }
-      }
-
-      return newSearchParams.toString()
-    },
-    [searchParams]
-  )
+  const createQueryString = useCreateQueryString(searchParams)
 
   React.useEffect(() => {
     if (debounceValue.length > 0) {

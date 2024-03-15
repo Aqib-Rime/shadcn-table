@@ -12,6 +12,10 @@ import { GeistSans } from "geist/font/sans"
 
 import { Toaster } from "@/components/ui/toaster"
 
+
+
+
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {

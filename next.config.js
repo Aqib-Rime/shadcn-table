@@ -7,11 +7,7 @@
 await import("./src/env.js")
 
 /** @type {import("next").NextConfig} */
-const nextConfig = {
-  experimental: {
-    ppr: true,
-  },
-}
+const nextConfig = {}
 
 // const millionConfig = {
 //   auto: { rsc: true },

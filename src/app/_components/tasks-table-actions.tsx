@@ -20,13 +20,16 @@ import {
   updateTaskStatus,
 } from "../_lib/actions"
 
-export function deleteSelectedRows({
-  table,
-  event,
-}: {
-  table: Table<Task>
-  event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
-}) {
+
+export function deleteSelectedRows(
+  {
+    table,
+    event,
+  }: {
+    table: Table<Task>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  }
+) {
   event?.preventDefault()
   const selectedRows = table.getFilteredSelectedRowModel().rows as {
     original: Task
@@ -48,13 +51,9 @@ export function deleteSelectedRows({
   )
 }
 
-export function updateTasksStatus({
-  table,
-  status,
-}: {
-  table: Table<Task>
-  status: string
-}) {
+export function updateTasksStatus(
+  { table, status }: { table: Table<Task>; status: string }
+) {
   const selectedRows = table.getFilteredSelectedRowModel().rows as unknown as {
     original: Task
   }[]
@@ -76,13 +75,9 @@ export function updateTasksStatus({
   )
 }
 
-export function updateTasksPriority({
-  table,
-  priority,
-}: {
-  table: Table<Task>
-  priority: string
-}) {
+export function updateTasksPriority(
+  { table, priority }: { table: Table<Task>; priority: string }
+) {
   const selectedRows = table.getFilteredSelectedRowModel().rows as unknown as {
     original: Task
   }[]

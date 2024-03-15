@@ -21,17 +21,19 @@ import {
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
 
+
+
+
+
 interface DataTableFacetedFilter<TData, TValue> {
   column?: Column<TData, TValue>
   title?: string
   options: Option[]
 }
 
-export function DataTableFacetedFilter<TData, TValue>({
-  column,
-  title,
-  options,
-}: DataTableFacetedFilter<TData, TValue>) {
+export function DataTableFacetedFilter<TData, TValue>(
+  { column, title, options }: DataTableFacetedFilter<TData, TValue>
+) {
   const selectedValues = new Set(column?.getFilterValue() as string[])
 
   return (
@@ -106,13 +108,10 @@ export function DataTableFacetedFilter<TData, TValue>({
                           : "opacity-50 [&_svg]:invisible"
                       )}
                     >
-                      <CheckIcon className={cn("size-4")} aria-hidden="true" />
+                      <CheckIcon className={cn("size-4")} />
                     </div>
                     {option.icon && (
-                      <option.icon
-                        className="mr-2 size-4 text-muted-foreground"
-                        aria-hidden="true"
-                      />
+                      <option.icon className="mr-2 size-4 text-muted-foreground" />
                     )}
                     <span>{option.label}</span>
                   </CommandItem>

@@ -8,13 +8,19 @@ import {
   type ColumnDataType,
 } from "drizzle-orm"
 
-export function filterColumn({
-  column,
-  value,
-}: {
-  column: Column<ColumnBaseConfig<ColumnDataType, string>, object, object>
-  value: string
-}) {
+
+
+
+
+export function filterColumn(
+  {
+    column,
+    value,
+  }: {
+    column: Column<ColumnBaseConfig<ColumnDataType, string>, object, object>
+    value: string
+  }
+) {
   const [filterValue, filterVariety] = value?.split(".") ?? []
 
   switch (filterVariety) {

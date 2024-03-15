@@ -15,6 +15,10 @@ import { Input } from "@/components/ui/input"
 import { DataTableFacetedFilter } from "@/components/data-table/data-table-faceted-filter"
 import { DataTableViewOptions } from "@/components/data-table/data-table-view-options"
 
+
+
+
+
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
   filterableColumns?: DataTableFilterableColumn<TData>[]
@@ -23,13 +27,15 @@ interface DataTableToolbarProps<TData> {
   deleteRowsAction?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-export function DataTableToolbar<TData>({
-  table,
-  filterableColumns = [],
-  searchableColumns = [],
-  newRowLink,
-  deleteRowsAction,
-}: DataTableToolbarProps<TData>) {
+export function DataTableToolbar<TData>(
+  {
+    table,
+    filterableColumns = [],
+    searchableColumns = [],
+    newRowLink,
+    deleteRowsAction,
+  }: DataTableToolbarProps<TData>
+) {
   const isFiltered = table.getState().columnFilters.length > 0
   const [isDeletePending, startDeleteTransition] = React.useTransition()
 

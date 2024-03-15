@@ -23,6 +23,7 @@ import { DataTableFloatingBar } from "./data-table-floating-bar"
 import { DataTablePagination } from "./data-table-pagination"
 import { DataTableToolbar } from "./data-table-toolbar"
 
+
 interface DataTableProps<TData, TValue> {
   /**
    * The table instance returned from useDataTable hook with pagination, sorting, filtering, etc.
@@ -86,16 +87,18 @@ interface DataTableProps<TData, TValue> {
   deleteRowsAction?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-export function DataTable<TData, TValue>({
-  table,
-  columns,
-  searchableColumns = [],
-  filterableColumns = [],
-  advancedFilter = false,
-  floatingBarContent,
-  newRowLink,
-  deleteRowsAction,
-}: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>(
+  {
+    table,
+    columns,
+    searchableColumns = [],
+    filterableColumns = [],
+    advancedFilter = false,
+    floatingBarContent,
+    newRowLink,
+    deleteRowsAction,
+  }: DataTableProps<TData, TValue>
+) {
   return (
     <div className="w-full space-y-2.5 overflow-auto">
       {advancedFilter ? (

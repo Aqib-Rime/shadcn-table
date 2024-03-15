@@ -10,6 +10,7 @@ import {
 import type { Table } from "@tanstack/react-table"
 
 import { useDebounce } from "@/hooks/use-debounce"
+import { useCreateQueryString } from "@/hooks/use-query-string-create"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -35,6 +36,7 @@ import { Separator } from "@/components/ui/separator"
 
 import { DataTableFacetedFilter } from "../data-table-faceted-filter"
 
+
 const operators = [
   {
     label: "And",
@@ -55,12 +57,14 @@ interface DataTableMultiFilterProps<TData> {
   >
 }
 
-export function DataTableMultiFilter<TData>({
-  table,
-  allOptions,
-  options,
-  setSelectedOptions,
-}: DataTableMultiFilterProps<TData>) {
+export function DataTableMultiFilter<TData>(
+  {
+    table,
+    allOptions,
+    options,
+    setSelectedOptions,
+  }: DataTableMultiFilterProps<TData>
+) {
   const [open, setOpen] = React.useState(true)
   const [operator, setOperator] = React.useState(operators[0])
 
@@ -120,16 +124,18 @@ interface MultiFilterRowProps<TData> extends DataTableMultiFilterProps<TData> {
   >
 }
 
-export function MultiFilterRow<TData>({
-  i,
-  table,
-  option,
-  allOptions,
-  options,
-  setSelectedOptions,
-  operator,
-  setOperator,
-}: MultiFilterRowProps<TData>) {
+export function MultiFilterRow<TData>(
+  {
+    i,
+    table,
+    option,
+    allOptions,
+    options,
+    setSelectedOptions,
+    operator,
+    setOperator,
+  }: MultiFilterRowProps<TData>
+) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -154,22 +160,7 @@ export function MultiFilterRow<TData>({
   }, [selectedOption?.items.length])
 
   // Create query string
-  const createQueryString = React.useCallback(
-    (params: Record<string, string | number | null>) => {
-      const newSearchParams = new URLSearchParams(searchParams?.toString())
-
-      for (const [key, value] of Object.entries(params)) {
-        if (value === null) {
-          newSearchParams.delete(key)
-        } else {
-          newSearchParams.set(key, String(value))
-        }
-      }
-
-      return newSearchParams.toString()
-    },
-    [searchParams]
-  )
+  const createQueryString = useCreateQueryString(searchParams)
 
   // Update query string
   React.useEffect(() => {

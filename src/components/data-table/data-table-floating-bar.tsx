@@ -7,17 +7,18 @@ import { type Table } from "@tanstack/react-table"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
+
+
+
+
 interface DataTableFloatingBarProps<TData>
   extends React.HTMLAttributes<HTMLElement> {
   table: Table<TData>
 }
 
-export function DataTableFloatingBar<TData>({
-  table,
-  children,
-  className,
-  ...props
-}: DataTableFloatingBarProps<TData>) {
+export function DataTableFloatingBar<TData>(
+  { table, children, className, ...props }: DataTableFloatingBarProps<TData>
+) {
   if (table.getFilteredSelectedRowModel().rows.length <= 0) return null
 
   return (

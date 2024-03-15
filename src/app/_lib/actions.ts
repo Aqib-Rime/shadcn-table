@@ -17,13 +17,10 @@ import type {
   updateTaskStatusSchema,
 } from "./validations"
 
-export async function seedTasks({
-  count = 100,
-  reset = false,
-}: {
-  count?: number
-  reset?: boolean
-}) {
+
+export async function seedTasks(
+  { count = 100, reset = false }: { count?: number; reset?: boolean }
+) {
   noStore()
   try {
     const allTasks: Task[] = []
@@ -58,10 +55,9 @@ export async function seedTasks({
   }
 }
 
-export async function updateTaskLabel({
-  id,
-  label,
-}: z.infer<typeof updateTaskLabelSchema>) {
+export async function updateTaskLabel(
+  { id, label }: z.infer<typeof updateTaskLabelSchema>
+) {
   noStore()
   try {
     await db.update(tasks).set({ label }).where(eq(tasks.id, id))
@@ -80,10 +76,9 @@ export async function updateTaskLabel({
   }
 }
 
-export async function updateTaskStatus({
-  id,
-  status,
-}: z.infer<typeof updateTaskStatusSchema>) {
+export async function updateTaskStatus(
+  { id, status }: z.infer<typeof updateTaskStatusSchema>
+) {
   noStore()
   try {
     await db.update(tasks).set({ status }).where(eq(tasks.id, id))
@@ -102,10 +97,9 @@ export async function updateTaskStatus({
   }
 }
 
-export async function updateTaskPriority({
-  id,
-  priority,
-}: z.infer<typeof updateTaskPrioritySchema>) {
+export async function updateTaskPriority(
+  { id, priority }: z.infer<typeof updateTaskPrioritySchema>
+) {
   try {
     await db.update(tasks).set({ priority }).where(eq(tasks.id, id))
 
@@ -123,7 +117,7 @@ export async function deleteTask(input: { id: string }) {
     await db.delete(tasks).where(eq(tasks.id, input.id))
 
     // Create a new task for the deleted one
-    await seedTasks({ count: 1 })
+    // await seedTasks({ count: 1 })
 
     revalidatePath("/")
   } catch (err) {

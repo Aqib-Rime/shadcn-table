@@ -18,6 +18,7 @@ import {
   searchableColumns,
 } from "./tasks-table-column-def"
 
+
 interface TasksTableProps {
   tasksPromise: ReturnType<typeof getTasks>
 }
@@ -38,6 +39,7 @@ export function TasksTable({ tasksPromise }: TasksTableProps) {
     pageCount,
     searchableColumns,
     filterableColumns,
+    getRowId: (row) => row.id,
   })
 
   return (

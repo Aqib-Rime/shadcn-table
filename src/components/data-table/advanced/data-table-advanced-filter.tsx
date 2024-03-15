@@ -33,12 +33,14 @@ interface DataTableAdvancedFilterProps<TData> {
   children?: React.ReactNode
 }
 
-export function DataTableAdvancedFilter<TData>({
-  options,
-  selectedOptions,
-  setSelectedOptions,
-  children,
-}: DataTableAdvancedFilterProps<TData>) {
+export function DataTableAdvancedFilter<TData>(
+  {
+    options,
+    selectedOptions,
+    setSelectedOptions,
+    children,
+  }: DataTableAdvancedFilterProps<TData>
+) {
   const [value, setValue] = React.useState("")
   const [open, setOpen] = React.useState(false)
   const [selectedOption, setSelectedOption] = React.useState<

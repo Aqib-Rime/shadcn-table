@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import type {
@@ -23,6 +21,7 @@ import {
 import { z } from "zod"
 
 import { useDebounce } from "@/hooks/use-debounce"
+import { useCreateQueryString } from "@/hooks/use-query-string-create"
 
 interface UseDataTableProps<TData, TValue> {
   /**
@@ -60,6 +59,7 @@ interface UseDataTableProps<TData, TValue> {
    * @example filterableColumns={[{ id: "status", title: "Status", options: ["todo", "in-progress", "done", "canceled"]}]}
    */
   filterableColumns?: DataTableFilterableColumn<TData>[]
+  getRowId: (row: TData) => string
 }
 
 const schema = z.object({
@@ -68,13 +68,16 @@ const schema = z.object({
   sort: z.string().optional(),
 })
 
-export function useDataTable<TData, TValue>({
-  data,
-  columns,
-  pageCount,
-  searchableColumns = [],
-  filterableColumns = [],
-}: UseDataTableProps<TData, TValue>) {
+export function useDataTable<TData, TValue>(
+  {
+    data,
+    columns,
+    pageCount,
+    getRowId,
+    searchableColumns = [],
+    filterableColumns = [],
+  }: UseDataTableProps<TData, TValue>
+) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -86,22 +89,8 @@ export function useDataTable<TData, TValue>({
   const [column, order] = sort?.split(".") ?? []
 
   // Create query string
-  const createQueryString = React.useCallback(
-    (params: Record<string, string | number | null>) => {
-      const newSearchParams = new URLSearchParams(searchParams?.toString())
+  const createQueryString = useCreateQueryString(searchParams)
 
-      for (const [key, value] of Object.entries(params)) {
-        if (value === null) {
-          newSearchParams.delete(key)
-        } else {
-          newSearchParams.set(key, String(value))
-        }
-      }
-
-      return newSearchParams.toString()
-    },
-    [searchParams]
-  )
   // Initial column filters
   const initialColumnFilters: ColumnFiltersState = React.useMemo(() => {
     return Array.from(searchParams.entries()).reduce<ColumnFiltersState>(
@@ -154,10 +143,11 @@ export function useDataTable<TData, TValue>({
   )
 
   React.useEffect(() => {
+    console.log(rowSelection)
     router.push(
       `${pathname}?${createQueryString({
         page: pageIndex + 1,
-        per_page: per_page,
+        per_page: pageSize,
       })}`,
       {
         scroll: false,
@@ -222,7 +212,7 @@ export function useDataTable<TData, TValue>({
     for (const column of debouncedSearchableColumnFilters) {
       if (typeof column.value === "string") {
         Object.assign(newParamsObject, {
-          [column.id]: typeof column.value === "string" ? column.value : null,
+          [column.id]: column.value,
         })
       }
     }
@@ -270,6 +260,7 @@ export function useDataTable<TData, TValue>({
       rowSelection,
       columnFilters,
     },
+    getRowId,
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onPaginationChange: setPagination,

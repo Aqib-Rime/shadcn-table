@@ -19,11 +19,9 @@ interface DataTableAdvancedFacetedFilterProps<TData, TValue> {
   options: Option[]
 }
 
-export function DataTableAdvancedFacetedFilter<TData, TValue>({
-  column,
-  title,
-  options,
-}: DataTableAdvancedFacetedFilterProps<TData, TValue>) {
+export function DataTableAdvancedFacetedFilter<TData, TValue>(
+  { column, title, options }: DataTableAdvancedFacetedFilterProps<TData, TValue>
+) {
   const selectedValues = new Set(column?.getFilterValue() as string[])
 
   return (

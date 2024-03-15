@@ -17,17 +17,20 @@ import { DataTableViewOptions } from "@/components/data-table/data-table-view-op
 import { DataTableAdvancedFilterItem } from "./data-table-advanced-filter-item"
 import { DataTableMultiFilter } from "./data-table-multi-filter"
 
+
 interface DataTableAdvancedToolbarProps<TData> {
   table: Table<TData>
   searchableColumns?: DataTableSearchableColumn<TData>[]
   filterableColumns?: DataTableFilterableColumn<TData>[]
 }
 
-export function DataTableAdvancedToolbar<TData>({
-  table,
-  filterableColumns = [],
-  searchableColumns = [],
-}: DataTableAdvancedToolbarProps<TData>) {
+export function DataTableAdvancedToolbar<TData>(
+  {
+    table,
+    filterableColumns = [],
+    searchableColumns = [],
+  }: DataTableAdvancedToolbarProps<TData>
+) {
   const [selectedOptions, setSelectedOptions] = React.useState<
     DataTableFilterOption<TData>[]
   >([])
