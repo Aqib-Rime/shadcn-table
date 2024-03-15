@@ -1,18 +1,19 @@
 import * as React from "react"
-import type { DataTableSearchableColumn } from "@/types"
+import type {
+  DataTableFilterableColumn,
+} from "@/types"
 import type { Table } from "@tanstack/react-table"
 
 import { Input } from "@/components/ui/input"
 
 type FilterToolbarProps<TData> = {
   table: Table<TData>
-  searchableColumns: DataTableSearchableColumn<TData>[]
+  searchableColumns: DataTableFilterableColumn<TData>[]
 }
 
-function FilterToolbar<TData>({
-  table,
-  searchableColumns,
-}: FilterToolbarProps<TData>) {
+function FilterToolbar<TData>(
+  { table, searchableColumns }: FilterToolbarProps<TData>
+) {
   return (
     <>
       {searchableColumns.length > 0 &&
