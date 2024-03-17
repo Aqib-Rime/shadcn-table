@@ -17,7 +17,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { searchParamsSchema } from "@/app/_lib/validations"
 
 import { DataTableAdvancedToolbar } from "./advanced/data-table-advanced-toolbar"
 import { DataTableFloatingBar } from "./data-table-floating-bar"

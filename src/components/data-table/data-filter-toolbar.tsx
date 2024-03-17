@@ -1,14 +1,12 @@
 import * as React from "react"
-import type {
-  DataTableFilterableColumn,
-} from "@/types"
+import type { DataTableSearchableColumn } from "@/types"
 import type { Table } from "@tanstack/react-table"
 
 import { Input } from "@/components/ui/input"
 
 type FilterToolbarProps<TData> = {
   table: Table<TData>
-  searchableColumns: DataTableFilterableColumn<TData>[]
+  searchableColumns: DataTableSearchableColumn<TData>[]
 }
 
 function FilterToolbar<TData>(
@@ -22,7 +20,7 @@ function FilterToolbar<TData>(
             table.getColumn(column.id ? String(column.id) : "") && (
               <Input
                 key={String(column.id)}
-                placeholder={`Filter ${column.title}...`}
+                placeholder={`Filter ${column.placeholder}...`}
                 value={
                   (table
                     .getColumn(String(column.id))
